@@ -50,16 +50,52 @@ const joinWordsWithSpace = function (words) { }
 const concatenateNames = function (names) { }
 
 // countVowelsInWords(["hello", "world"]) => "eoo"
-const countVowelsInWords = function (words) { }
+const getVowels = function (init, char) {
+  const allVowels = 'aeiouAEIOU';
+  init += allVowels.includes(char) ? char : '';
+
+  return init;
+}
+
+const vowelsInWord = function (vowels, word) {
+  const wordInArray = word.split("");
+
+  vowels += wordInArray.reduce(getVowels, '');
+
+  return vowels;
+}
+
+const countVowelsInWords = function (words) {
+  return words.reduce(vowelsInWord, '')
+}
 
 // makeCamelCase(["hello", "world", "how", "are", "you"]) => "helloWorldHowAreYou"
-const makeCamelCase = function (words) { }
+const getCamelCase = function (camelCase, word) {
+  camelCase += word.replace(word[0], word[0].toUpperCase());
+  return camelCase;
+}
+
+const makeCamelCase = function (words) {
+  return words.reduce(getCamelCase, '')
+}
 
 // reverseString(["apple", "banana", "cherry"]) => "elppaananabyrrehc"
-const reverseString = function (words) { }
+const reverseString = function (words) {
+  return words.reduce(function (reverse, word) {
+    return reverse += word.split("").reverse().join("");
+  }, '');
+}
 
 // duplicateNumbers([1, 2, 3]) => [1, 1, 2, 2, 3, 3]
-const duplicateNumbers = function (numbers) { }
+const getDuplicates = function (duplicate, number) {
+  duplicate += number + '' + number;
+
+  return duplicate;
+}
+
+const duplicateNumbers = function (numbers) {
+  return numbers.reduce(getDuplicates, '').split('');
+}
 
 // concatenateArrays([[1, 2], [3, 4], [5, 6]]) => [1, 2, 3, 4, 5, 6]
 const concatenateArrays = function (arrays) { }
